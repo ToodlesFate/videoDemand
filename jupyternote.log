@@ -1,0 +1,15 @@
+nohup: ignoring input
+[I 00:31:27.695 NotebookApp] JupyterLab beta preview extension loaded from /home/ToodlesFate/anaconda3/lib/python3.6/site-packages/jupyterlab
+[I 00:31:27.695 NotebookApp] JupyterLab application directory is /home/ToodlesFate/anaconda3/share/jupyter/lab
+[I 00:31:27.701 NotebookApp] Serving notebooks from local directory: /home/ToodlesFate/video
+[I 00:31:27.701 NotebookApp] 0 active kernels
+[I 00:31:27.701 NotebookApp] The Jupyter Notebook is running at:
+[I 00:31:27.701 NotebookApp] http://localhost:8888/?token=28e597913593e1b330746a3a7c427a81a9bfb6b9b3df7706
+[I 00:31:27.701 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[W 00:31:27.702 NotebookApp] No web browser found: could not locate runnable browser.
+[C 00:31:27.702 NotebookApp] 
+    
+    Copy/paste this URL into your browser when you connect for the first time,
+    to login with a token:
+        http://localhost:8888/?token=28e597913593e1b330746a3a7c427a81a9bfb6b9b3df7706&token=28e597913593e1b330746a3a7c427a81a9bfb6b9b3df7706
+/var/tmp/sclD7E2WR: line 8:  7967 Killed                  'nohup' 'jupyter' 'notebook' '--allow-root'

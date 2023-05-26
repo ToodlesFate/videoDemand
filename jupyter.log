@@ -1,0 +1,39 @@
+nohup: ignoring input
+[W 00:28:56.393 NotebookApp] Collisions detected in /home/ToodlesFate/.jupyter/jupyter_notebook_config.py and /home/ToodlesFate/.jupyter/jupyter_notebook_config.json config files. /home/ToodlesFate/.jupyter/jupyter_notebook_config.json has higher priority: {
+      "NotebookApp": {
+        "password": "'sha1:ecba51947700:00f14b766ac0be3adc42a4e6eb655c83e31770ab' ignored, using 'sha1:fd63b5fc45c2:2fbad38b5c16ab85fb459d41f798259a45f8bb1d'"
+      }
+    }
+[W 00:28:56.396 NotebookApp] Config option `allow_remote_access` not recognized by `NotebookApp`.  Did you mean one of: `allow_credentials, allow_root`?
+Traceback (most recent call last):
+  File "/home/ToodlesFate/anaconda3/lib/python3.6/site-packages/traitlets/traitlets.py", line 528, in get
+    value = obj._trait_values[self.name]
+KeyError: 'runtime_dir'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ToodlesFate/anaconda3/bin/jupyter-notebook", line 11, in <module>
+    sys.exit(main())
+  File "/home/ToodlesFate/anaconda3/lib/python3.6/site-packages/jupyter_core/application.py", line 266, in launch_instance
+    return super(JupyterApp, cls).launch_instance(argv=argv, **kwargs)
+  File "/home/ToodlesFate/anaconda3/lib/python3.6/site-packages/traitlets/config/application.py", line 657, in launch_instance
+    app.initialize(argv)
+  File "<decorator-gen-7>", line 2, in initialize
+  File "/home/ToodlesFate/anaconda3/lib/python3.6/site-packages/traitlets/config/application.py", line 87, in catch_config_error
+    return method(app, *args, **kwargs)
+  File "/home/ToodlesFate/anaconda3/lib/python3.6/site-packages/notebook/notebookapp.py", line 1535, in initialize
+    self.init_configurables()
+  File "/home/ToodlesFate/anaconda3/lib/python3.6/site-packages/notebook/notebookapp.py", line 1233, in init_configurables
+    connection_dir=self.runtime_dir,
+  File "/home/ToodlesFate/anaconda3/lib/python3.6/site-packages/traitlets/traitlets.py", line 556, in __get__
+    return self.get(obj, cls)
+  File "/home/ToodlesFate/anaconda3/lib/python3.6/site-packages/traitlets/traitlets.py", line 535, in get
+    value = self._validate(obj, dynamic_default())
+  File "/home/ToodlesFate/anaconda3/lib/python3.6/site-packages/jupyter_core/application.py", line 99, in _runtime_dir_default
+    ensure_dir_exists(rd, mode=0o700)
+  File "/home/ToodlesFate/anaconda3/lib/python3.6/site-packages/jupyter_core/utils/__init__.py", line 13, in ensure_dir_exists
+    os.makedirs(path, mode=mode)
+  File "/home/ToodlesFate/anaconda3/lib/python3.6/os.py", line 220, in makedirs
+    mkdir(name, mode)
+PermissionError: [Errno 13] Permission denied: '/run/user/0/jupyter'

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>修改视频信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/png" href="assets/images/favicon-1.png" />
+        <link rel="stylesheet" type="text/css" href="assets/css/libs/bootstrap/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/fonts/ionicons-2.0.1/css/ionicons.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/libs/slick/slick.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/libs/magnific-popup/magnific-popup.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+
+    </head>
+
+    <body class="responsive home-2">
+        <div id="myapp">
+            <div id="wrapper-container">
+                <div id="main-content">
+                    <div class="content-area">
+                        <div class="page-title">
+                            <div class="main-top" style="background-image: url(assets/images/bg-page-title-01.jpg);">
+                                <div class="overlay-top-header"></div>
+                                <div class="content container">
+                                    <h1>
+                                        Modify Video
+                                    </h1>
+                                    <div class="wrap-breadcrumb">
+                                        <ul class="breadcrumbs">
+                                            <li>
+                                                <a href="javascript:;">
+                                                    Home
+                                                    {{video.id}}
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <span class="breadcrum-icon">/</span>
+                                                Submit Video
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="site-content layout-1">
+                            <div class="container">
+                                <div class="row">
+                                    <main class="site-main col-12">
+                                        <div class="wrap-main-content">
+
+                                            <div class="thim-form_submit-page">
+                                                <div class="row justify-content-center">
+                                                    <div class="col-xl-10">
+
+                                                        <div class="bp-element bp-element-heading align-center">
+                                                            <h3 class="title">
+                                                                ADD NEW VIDEO
+                                                            </h3>
+                                                            <div class="description">
+                                                                This is just a demo, so we will limit the size of the
+                                                                file
+                                                                uploaded to the server ( max file size: 2 megabytes ).
+                                                            </div>
+                                                            <div class="content">
+                                                                You can change these values when configuring.
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="divline_submit-page"></div>
+
+                                                        <form class="submit-video-form validate-form" action="#" method="post">
+
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <div class="item-input">
+                                                                        <span class="input-title"> 视频名称 </span>
+
+                                                                        <label class="input-field">
+                                                                            <input type="text"
+                                                                                placeholder="请输入你要修改后视频的名称" name="name"
+                                                                                v-model="video.name">
+                                                                        </label>
+
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-12">
+                                                                    <div class="item-input">
+                                                                        <span class="input-title"> 视频描述 </span>
+
+                                                                        <label class="input-field">
+                                                                            <textarea name="info"
+                                                                                v-model="video.info"></textarea>
+                                                                        </label>
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <button class="btn-submit btn-large shape-round"
+                                                                v-on:click.prevent="update_video()">
+                                                                修改视频
+                                                            </button>
+
+                                                        </form>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </main>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+
+    <script src="assets/js/libs/jquery/jquery.js"></script>
+    <script src="assets/js/libs/bootstrap/popper.js"></script>
+    <script src="assets/js/libs/bootstrap/bootstrap.min.js"></script>
+    <script src="assets/js/libs/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/libs/slick/slick.min.js"></script>
+    <script src="assets/js/libs/isotope/isotope.pkgd.min.js"></script>
+    <script src="assets/js/libs/select2/select2.min.js"></script>
+    <script src="assets/js/thim-custom.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+
+    <script>
+        let app = new Vue({
+            el: '#myapp',
+            data: {
+                video: {},
+                id: [],
+            },
+
+            methods: {
+
+                get_param: function (name) {
+                    return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&[#];|$)').exec(location.href) || [, ""])[1].replace(/\+/g, '%20')) || null;
+                },
+
+                get_video: function () {
+                    var id = this.get_param("id");
+                    $.ajax({
+                        url: "/video/" + id,
+                        type: "get",
+                        context: this,
+                        success: function (result, status, xhr) {
+                            this.video = result;
+                        },
+                    })
+                },
+
+                update_video: function () {
+                    $.ajax({
+                        url: "/video/" + this.video.id,
+                        type: "put",
+                        data: JSON.stringify(this.video),
+                        context: this,
+
+                        success: function (result, status, xhr) {
+                            alert("修改视频操作成功");
+                            // window.location.reload();
+                        },
+
+                    });
+                },
+
+            },
+        });
+
+        app.get_video();
+    </script>
+
+</html>
